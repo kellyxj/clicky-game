@@ -1,3 +1,24 @@
+import React from "react";
+import "./App.css";
+
+class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            imageArray: [
+                "https://cdn.jjkeller.com/wcsstore/CVCatalogAssetStore/images/product/500x500/3142.jpg",
+                "https://images-na.ssl-images-amazon.com/images/I/31vHXw5fKVL._SX425_.jpg",
+                "https://www.wtbtraffic.com/pub/media/catalog/product/cache/207e23213cf636ccdef205098cf3c8a3/3/5/353snw-_2969_.jpg",
+                "https://www.wtbtraffic.com/pub/media/catalog/product/cache/207e23213cf636ccdef205098cf3c8a3/3/5/354snw-_2974_.jpg",
+                "https://sep.yimg.com/ay/comfort/extra-large-individual-house-number-31.gif",
+                "http://signletterdepot.com/images/thumbnails/280/282/detailed/0/6.jpg"
+            ],
+            score: 0,
+            alreadyGuessed: []
+        };
+        this.handleClick = this.handleClick.bind(this);
+    }
+
     shuffle(array) {
         const returnArray = [];
         const copyArray = array.slice();
@@ -9,24 +30,21 @@
         return returnArray;
     }
 
-function App() {
+    render() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+            <>
+                <h1>Clicky Game</h1>
+                <div>
+                    {this.shuffle(this.state.imageArray).map(imageUrl => (
+                        <img
+                            height="100px"
+                            alt=""
+                            src={imageUrl}
+                            onClick={() => this.handleClick(imageUrl)}
+                        />
+                    ))}
     </div>
+            </>
   );
 }
 
