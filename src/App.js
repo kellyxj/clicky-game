@@ -1,6 +1,13 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+    shuffle(array) {
+        const returnArray = [];
+        const copyArray = array.slice();
+        for (let i = 0; i < array.length; i++) {
+            const randIndex = Math.floor(Math.random() * copyArray.length);
+            returnArray.push(copyArray[randIndex]);
+            copyArray.splice(randIndex, 1);
+        }
+        return returnArray;
+    }
 
 function App() {
   return (
