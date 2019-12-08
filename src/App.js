@@ -30,10 +30,31 @@ class App extends React.Component {
         return returnArray;
     }
 
+    handleClick(url) {
+        if (!this.state.alreadyGuessed.includes(url)) {
+            const guessArray = this.state.alreadyGuessed;
+            guessArray.push(url);
+            this.setState({
+                imageArray: this.state.imageArray,
+                score: this.state.score + 1,
+                alreadyGuessed: guessArray
+            });
+        } else {
+            this.setState({
+                imageArray: this.state.imageArray,
+                score: 0,
+                alreadyGuessed: []
+            });
+        }
+    }
+
     render() {
-  return (
+        return (
             <>
                 <h1>Clicky Game</h1>
+                <p>
+                    Score: <span>{this.state.score}</span>
+                </p>
                 <div>
                     {this.shuffle(this.state.imageArray).map(imageUrl => (
                         <img
@@ -43,9 +64,10 @@ class App extends React.Component {
                             onClick={() => this.handleClick(imageUrl)}
                         />
                     ))}
-    </div>
+                </div>
             </>
-  );
+        );
+    }
 }
 
 export default App;
